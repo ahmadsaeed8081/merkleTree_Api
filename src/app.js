@@ -63,7 +63,7 @@ console.log(merk1("0x14475F3B886634dcD501EBc0Fd555660946F52B8"));
 
 app.get("/proof1", async(req,res)=>{
 
-    const result = merk1(req.query.userAddress);
+    const result = merk1("0x14475F3B886634dcD501EBc0Fd555660946F52B8");
 console.log(result);
     res.send(result);
 
