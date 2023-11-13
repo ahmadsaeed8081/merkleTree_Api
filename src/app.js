@@ -63,9 +63,22 @@ console.log(merk1("0x14475F3B886634dcD501EBc0Fd555660946F52B8"));
 
 app.get("/proof1", async(req,res)=>{
 
-    const result = merk1("0x14475F3B886634dcD501EBc0Fd555660946F52B8");
-console.log(result);
-    res.send(result);
+    let addresses=[];
+    const data=fs.readFileSync('src/backend/WL1.txt', 'utf8');
+
+    data.split(/\r?\n/).forEach(line =>  {
+        addresses.push(line.trim());
+           });    
+    const leaves = addresses.map(x => keccak256(x))
+    const tree = new MerkleTree(leaves, keccak256, { sortPairs: true })
+    const buf2hex = x => '0x' + x.toString('hex')
+    
+    // console.log(buf2hex(tree.getRoot()))
+    
+    const leaf = keccak256(req.query.userAddress) 
+    const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
+
+    res.send(proof);
 
 })
 app.get("/proof2", async(req,res)=>{
