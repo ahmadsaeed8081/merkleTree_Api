@@ -54,7 +54,7 @@ function merk2(_add)
     
     const leaf = keccak256(_add) 
     const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
-    return proof
+    return proof;
 }
 
 // merk1("0x14475F3B886634dcD501EBc0Fd555660946F52B8");
@@ -63,7 +63,7 @@ function merk2(_add)
 app.get("/proof1", async(req,res)=>{
 
     const result = merk1(req.query.userAddress);
-    res.send(result);
+    res.send(req.query.userAddress);
 
 })
 app.get("/proof2", async(req,res)=>{
