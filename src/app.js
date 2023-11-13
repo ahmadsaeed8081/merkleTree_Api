@@ -71,7 +71,7 @@ console.log(result);
 app.get("/proof2", async(req,res)=>{
 
     const result = merk2((req.query.userAddress).toString());
-    res.send(typeof(req.query.userAddress));
+    res.send(typeof(req.query.userAddress) +"   "+req.query.userAddress );
 
 })
 
