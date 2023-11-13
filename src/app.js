@@ -29,8 +29,9 @@ function merk1(_add)
     
     const leaf = keccak256(_add) 
     const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
-    console.log(proof);
-    console.log(buf2hex(leaf));
+    // console.log(proof);
+    return proof
+    // console.log(buf2hex(leaf));
 
 }
 
@@ -53,15 +54,21 @@ function merk2(_add)
     
     const leaf = keccak256(_add) 
     const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
-    console.log(proof);
+    return proof
 }
 
-merk1();
-merk2();
+// merk1("0x14475F3B886634dcD501EBc0Fd555660946F52B8");
+// // merk2("0x14475F3B886634dcD501EBc0Fd555660946F52B8");
 
 app.get("/proof1", async(req,res)=>{
 
     const result = merk1(req.query.userAddress);
+    res.send(result);
+
+})
+app.get("/proof2", async(req,res)=>{
+
+    const result = merk2(req.query.userAddress);
     res.send(result);
 
 })
