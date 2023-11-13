@@ -25,12 +25,12 @@ function merk1(_add)
     const tree = new MerkleTree(leaves, keccak256, { sortPairs: true })
     const buf2hex = x => '0x' + x.toString('hex')
     
-    // console.log(buf2hex(tree.getRoot()))
+    console.log(buf2hex(tree.getRoot()))
     
-    const leaf = keccak256(_add) 
-    const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
-    // console.log(proof);
-    return proof
+    // const leaf = keccak256(_add) 
+    // const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
+    // // console.log(proof);
+    // return proof
     // console.log(buf2hex(leaf));
 
 }
@@ -52,14 +52,15 @@ function merk2(_add)
     
     console.log(buf2hex(tree.getRoot()))
     
-    const leaf = keccak256(_add) 
-    const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
-    return proof;
+    // const leaf = keccak256(_add) 
+    // const proof = tree.getProof(leaf).map(x => buf2hex(x.data))
+    // // console.log(proof);
+    // return proof;
 }
 
-// console.log(merk1("0x14475F3B886634dcD501EBc0Fd555660946F52B8"));
+merk1("0x14475F3B886634dcD501EBc0Fd555660946F52B8");
 
-// merk2("0x14475F3B886634dcD501EBc0Fd555660946F52B8");
+merk2("0x14475F3B886634dcD501EBc0Fd555660946F52B8");
 
 app.get("/proof1", async(req,res)=>{
 
