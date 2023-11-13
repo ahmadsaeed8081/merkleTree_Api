@@ -70,7 +70,7 @@ console.log(result);
 })
 app.get("/proof2", async(req,res)=>{
 
-    const result = merk2(req.query.userAddress);
+    const result = merk2((req.query.userAddress).toString());
     res.send(result);
 
 })
